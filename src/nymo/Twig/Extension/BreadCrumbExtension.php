@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare (strict_types = 1);
 /**
  * This file is part of silex-twig-breadcrumb-extension
  *
@@ -18,26 +18,31 @@ use Pimple\Container;
  */
 class BreadCrumbExtension extends \Twig_Extension
 {
+    const _CONFIG = [
+        'separator' => '>',
+        'template' => 'breadcrumbs'
+    ];
+
     /**
      * @var Container
      */
     protected $app;
 
     /**
-     * @var string
+     * config values
+     *
+     * @var array;
      */
-    protected $separator = '>';
+    protected $currentConfig;
 
     /**
      * @param Container $app
      */
-    public function __construct(Container $app)
+    public function __construct(Container $app, array $config = null)
     {
         $this->app = $app;
-        //set options
-        if (isset($app['breadcrumbs.separator'])) {
-            $this->separator = $app['breadcrumbs.separator'];
-        }
+        $this->currentConfig = array_merge(self::_CONFIG, $config ?? []);
+
         //create loader to load base template which can be overridden by user
         $loader = new \Twig_Loader_Filesystem(__DIR__ . '/../../Resources/Views');
         $this->app['twig.loader']->addLoader($loader);
@@ -46,7 +51,7 @@ class BreadCrumbExtension extends \Twig_Extension
     /**
      * @inheritDoc
      */
-    public function getFunctions(): array
+    public function getFunctions() : array
     {
         return [
             'renderBreadCrumbs' => new \Twig_SimpleFunction(
@@ -61,15 +66,15 @@ class BreadCrumbExtension extends \Twig_Extension
      * Returns the rendered breadcrumb template
      * @return string
      */
-    public function renderBreadCrumbs(): string
+    public function renderBreadCrumbs() : string
     {
         $translator = isset($this->app['translator']) ? true : false;
 
         return $this->app['twig']->render(
-            'breadcrumbs.html.twig',
+            $this->currentConfig['template'] . '.html.twig',
             [
                 'breadcrumbs' => $this->app['breadcrumbs']->getItems(),
-                'separator' => $this->separator,
+                'separator' => $this->currentConfig['separator'],
                 'translator' => $translator
             ]
         );
@@ -79,7 +84,7 @@ class BreadCrumbExtension extends \Twig_Extension
      * Returns the name of the extension
      * @return string The extension name
      */
-    public function getName(): string
+    public function getName() : string
     {
         return 'renderBreadCrumbs';
     }

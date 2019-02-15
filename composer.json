@@ -1,5 +1,5 @@
 {
-    "name": "nymo/silex-twig-breadcrumb-extension",
+    "name": "mtournay/silex-twig-breadcrumb-extension",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -8,16 +8,27 @@
             "homepage": "http://www.gregorpanek.de",
             "email": "gp@gregorpanek.de",
             "role": "Developer"
+        },
+        {
+            "name": "Michel Tournay",
+            "homepage": "http://www.michel-tournay.fr",
+            "email": "contact@michel-tournay.fr",
+            "role": "Developer"
         }
     ],
     "description": "Twig breadcrumb extension for use in silex",
-    "keywords": ["silex", "twig", "breadcrumbs", "extension"],
-    "homepage": "http://github.com/nymo/silex-twig-breadcrumb-extension",
+    "keywords": [
+        "silex",
+        "twig",
+        "breadcrumbs",
+        "extension"
+    ],
+    "homepage": "http://github.com/mtournay/silex-twig-breadcrumb-extension",
     "require": {
         "php": ">=7.1",
         "silex/silex": "^2.0",
         "twig/twig": "^2.0",
-        "symfony/twig-bridge": "^4.0"
+        "symfony/twig-bridge": "^3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.0",

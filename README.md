@@ -1,3 +1,7 @@
+# Aim of this fork
+This fork was intended to keep compatibility with silex 2.3, without dependencies from symfony 4
+I also add some minor functionnality
+
 # Twig breadcrumb extension for Silex
 This is a breadcrumb extension for Twig which includes a breadcrumb service provider for silex for easy and simple use
 of breadcrumbs in Silex.
@@ -19,12 +23,13 @@ Since Silex get EOL in June 2018 this Extension will be archived, too. No furthe
 - Create easily breadcrumbs in your Silex application
 - i18n support
 - Configurable separator
+- Configurable Template
 - Template override
 - Named route support
 
 ## General Requirements
 - Twig
-- gettext must be activated in your PHP environment for i8n support since version 1.1.0 
+- gettext must be activated in your PHP environment for i8n support since version 1.1.0
 
 ### For PHP 5.3
 - Silex 1.x

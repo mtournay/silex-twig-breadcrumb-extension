@@ -1,0 +1,24 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+
+        {% if loop.last %}
+        <li class="breadcrumb-item lastItem active">
+            {% else %}
+        <li class="breadcrumb-item">
+            {% endif %}
+
+            {% if breadcrumb.target is null or loop.last %}
+            {% if translator %}
+            {% include 'translation.html.twig' %}
+            {% else %}
+            {{ breadcrumb.linkName }}
+            {% endif %}
+            {% else %}
+            <a
+                href="{{ breadcrumb.target }}">{% if translator %}{% include 'translation.html.twig' %}{% else %}{{ breadcrumb.linkName }}{% endif %}</a>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ol>
+</nav>
